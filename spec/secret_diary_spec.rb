@@ -38,14 +38,16 @@ RSpec.describe SecretDiary do
     let(:message) { "I'm a message" }
     subject(:diary) {SecretDiary.new(journal)}
 
-    it "gets read" do
+    before do
       diary.unlock
+    end
+
+    it "gets read" do
       expect(journal).to receive(:read)
       diary.read
     end
 
     it "gets written" do
-      diary.unlock
       expect(journal).to receive(:write)
       diary.write(message)
     end
